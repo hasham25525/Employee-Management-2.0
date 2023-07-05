@@ -12,18 +12,27 @@ function App() {
 
     },
     {
-      name: "John Michael",
+      name: "Mike ",
       job: "Manager",
       date: "23/04/18",
 
     },
+    {
+      name: "mem ",
+      job: "Employee",
+      date: "23/04/20",
 
+    },
   ]);
 
+   const handleDeleteRow =(targetRow)=>{
+    setTableRows(tableRows.filter((_,idx)=>idx!== targetRow))
+   ;
+   }
   return (
     <>
       <Modal />
-      <MyTable tableRows={tableRows} />
+      <MyTable tableRows={tableRows} handleDeleteRow={handleDeleteRow} />
     </>
   )
 }

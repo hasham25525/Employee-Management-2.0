@@ -6,7 +6,7 @@ import { PencilIcon, UserPlusIcon, TrashIcon } from "@heroicons/react/24/solid";
 
 const TABLE_HEAD = ["Name", "Job", "Employed", ""];
 
-export default function MyTable({ tableRows }) {
+export default function MyTable({ tableRows, handleDeleteRow }) {
   return (
     <>
 
@@ -56,7 +56,7 @@ export default function MyTable({ tableRows }) {
                         </IconButton>
                       </Tooltip>
                       <Tooltip content="Delete User">
-                        <IconButton variant="text" color="blue-gray">
+                        <IconButton variant="text" color="blue-gray" onClick={()=>handleDeleteRow(idx)}>
                           <TrashIcon className="h-5 w-5" />
                         </IconButton>
                       </Tooltip>
