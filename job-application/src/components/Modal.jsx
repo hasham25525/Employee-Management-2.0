@@ -13,9 +13,8 @@ import {
     Checkbox,
 } from "@material-tailwind/react";
 
-export default function Modal({ onSubmit }) {
-    const [open, setOpen] = React.useState(false);
-    const handleOpen = () => setOpen((cur) => !cur);
+export default function Modal({ onSubmit, handleOpen, open }) {
+  
 
     const [formState, setFormState] = useState(
         {

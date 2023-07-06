@@ -1,4 +1,4 @@
-import { useState } from "react";
+import React, { useState } from "react";
 import MyTable from "./components/MyTable";
 import Modal from "./components/Modal";
 
@@ -25,6 +25,9 @@ function App() {
     },
   ]);
 
+  const [open, setOpen] = React.useState(false);
+    const handleOpen = () => setOpen((cur) => !cur);
+
   const [rowToEdit, setRowToEdit] = useState(null);
 
   const handleEdit = (idx) => {
@@ -43,7 +46,10 @@ function App() {
 
   return (
     <>
-      <Modal onSubmit={handleSubmit} />
+      <Modal onSubmit={handleSubmit} 
+      handleOpen={handleOpen}
+      open={open}
+      />
       <MyTable 
       tableRows={tableRows}
       handleDeleteRow={handleDeleteRow} 
