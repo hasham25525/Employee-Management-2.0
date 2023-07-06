@@ -13,23 +13,23 @@ import {
     Checkbox,
 } from "@material-tailwind/react";
 
-export default function Modal({ onSubmit, handleOpen, open }) {
-  
+export default function Modal({ onSubmit, handleOpen, open, defaultValue }) {
 
-    const [formState, setFormState] = useState(
-        {
-            name: "", job: "", date: ""
-        }
+
+    const [formState, setFormState] = useState(defaultValue ||
+    {
+        name: "", job: "", date: ""
+    }
     );
-const [errors, setErrors]= useState('');
+    const [errors, setErrors] = useState('');
     const validateForm = () => {
         if (formState.name && formState.job && formState.date) {
             setErrors('');
             return true;
         } else {
-            let errorFields=[]
-            for(const[key,value] of Object.entries(formState)){
-                if(!value){
+            let errorFields = []
+            for (const [key, value] of Object.entries(formState)) {
+                if (!value) {
                     errorFields.push(key);
                 }
             }
@@ -40,11 +40,11 @@ const [errors, setErrors]= useState('');
 
     const addEmployee = (e) => {
         e.preventDefault();
-        if(!validateForm()) return
+        if (!validateForm()) return
         onSubmit(formState)
         handleOpen()
+        // document.getElementById('editmodal').reset();
 
-        
     }
 
     return (
@@ -54,7 +54,8 @@ const [errors, setErrors]= useState('');
                 size="xs"
                 open={open}
                 handler={handleOpen}
-                className="bg-transparent shadow-none"
+                // id="editmodal"
+                className="bg-transparent shadow-none "
             >
                 <Card className="mx-auto w-full max-w-[24rem]">
                     <CardHeader
@@ -77,7 +78,7 @@ const [errors, setErrors]= useState('');
                                 return { ...formState, job: e.target.value }
                             })
                         }} />
-                        <Input label="Employed Date " size="lg" value={formState.employmentDate} onChange={(e) => {
+                        <Input label="Employed Date " size="lg" value={formState.date} onChange={(e) => {
                             setFormState(formState => {
                                 return { ...formState, date: e.target.value }
                             })

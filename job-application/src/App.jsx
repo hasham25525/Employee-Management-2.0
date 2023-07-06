@@ -25,7 +25,7 @@ function App() {
     },
   ]);
 
-  const [open, setOpen] = React.useState(false);
+  const [open, setOpen] = useState(false);
     const handleOpen = () => setOpen((cur) => !cur);
 
   const [rowToEdit, setRowToEdit] = useState(null);
@@ -49,6 +49,7 @@ function App() {
       <Modal onSubmit={handleSubmit} 
       handleOpen={handleOpen}
       open={open}
+      defaultValue={rowToEdit!== null && tableRows[rowToEdit] }
       />
       <MyTable 
       tableRows={tableRows}
