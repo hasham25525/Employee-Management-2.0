@@ -25,18 +25,31 @@ function App() {
     },
   ]);
 
-   const handleDeleteRow =(targetRow)=>{
-    setTableRows(tableRows.filter((_,idx)=>idx!== targetRow))   ;
-   }
+  const [rowToEdit, setRowToEdit] = useState(null);
 
-   const handleSubmit=(newRow)=>{
-    setTableRows([...tableRows,newRow])
-   }
+  const handleEdit = (idx) => {
+    setRowToEdit(idx)
+    handleOpen();
+  }
+
+
+  const handleDeleteRow = (targetRow) => {
+    setTableRows(tableRows.filter((_, idx) => idx !== targetRow));
+  }
+
+  const handleSubmit = (newRow) => {
+    setTableRows([...tableRows, newRow])
+  }
 
   return (
     <>
-      <Modal onSubmit={handleSubmit}/>
-      <MyTable tableRows={tableRows} handleDeleteRow={handleDeleteRow} />
+      <Modal onSubmit={handleSubmit} />
+      <MyTable 
+      tableRows={tableRows}
+      handleDeleteRow={handleDeleteRow} 
+      handleEdit={handleEdit}  
+      />
+     
     </>
   )
 }

@@ -1,4 +1,6 @@
 import React, { useState } from "react";
+import { UserPlusIcon } from "@heroicons/react/24/solid";
+
 import {
     Button,
     Dialog,
@@ -11,7 +13,7 @@ import {
     Checkbox,
 } from "@material-tailwind/react";
 
-export default function Modal({onSubmit}) {
+export default function Modal({ onSubmit }) {
     const [open, setOpen] = React.useState(false);
     const handleOpen = () => setOpen((cur) => !cur);
 
@@ -20,16 +22,35 @@ export default function Modal({onSubmit}) {
             name: "", job: "", date: ""
         }
     );
+const [errors, setErrors]= useState('');
+    const validateForm = () => {
+        if (formState.name && formState.job && formState.date) {
+            setErrors('');
+            return true;
+        } else {
+            let errorFields=[]
+            for(const[key,value] of Object.entries(formState)){
+                if(!value){
+                    errorFields.push(key);
+                }
+            }
+            setErrors(errorFields.join(', '))
+            return false;
+        }
+    }
 
     const addEmployee = (e) => {
         e.preventDefault();
+        if(!validateForm()) return
         onSubmit(formState)
         handleOpen()
+
+        
     }
 
     return (
         <React.Fragment>
-            <Button onClick={handleOpen}>Add Employee</Button>
+            <Button onClick={handleOpen} className="flex"> <UserPlusIcon className="h-4 w-4" /> Add Employee   </Button>
             <Dialog
                 size="xs"
                 open={open}
@@ -62,6 +83,11 @@ export default function Modal({onSubmit}) {
                                 return { ...formState, date: e.target.value }
                             })
                         }} />
+                        {
+                            errors && <div className="errorDiv ">
+                                {`Please include: ${errors}`}
+                            </div>
+                        }
                     </CardBody>
                     <CardFooter className="pt-0">
                         <Button variant="gradient" onClick={addEmployee} fullWidth>

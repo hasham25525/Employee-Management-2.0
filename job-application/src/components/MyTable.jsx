@@ -1,16 +1,16 @@
 import { Card, Typography, Tooltip, IconButton } from "@material-tailwind/react";
-import { PencilIcon, UserPlusIcon, TrashIcon } from "@heroicons/react/24/solid";
+import { PencilIcon,TrashIcon } from "@heroicons/react/24/solid";
 
 
 
 
 const TABLE_HEAD = ["Name", "Job", "Employed", ""];
 
-export default function MyTable({ tableRows, handleDeleteRow }) {
+export default function MyTable({ tableRows, handleDeleteRow, handleEdit }) {
   return (
     <>
 
-      <Card className="overflow-scroll h-full w-full">
+      <Card className="overflow-scroll h-full w-full ">
         <table className="w-full min-w-max table-auto text-left">
           <thead>
             <tr>
@@ -19,7 +19,7 @@ export default function MyTable({ tableRows, handleDeleteRow }) {
                   <Typography
                     variant="small"
                     color="blue-gray"
-                    className="font-normal leading-none opacity-70"
+                    className="font-bold leading-none opacity-70"
                   >
                     {head}
                   </Typography>
@@ -51,12 +51,12 @@ export default function MyTable({ tableRows, handleDeleteRow }) {
                     <td >
 
                       <Tooltip content="Edit User">
-                        <IconButton variant="text" color="blue-gray">
+                        <IconButton variant="text" color="blue" onClick={()=>handleEdit(idx)}>
                           <PencilIcon className="h-5 w-5" />
                         </IconButton>
                       </Tooltip>
                       <Tooltip content="Delete User">
-                        <IconButton variant="text" color="blue-gray" onClick={()=>handleDeleteRow(idx)}>
+                        <IconButton variant="text" color="red" onClick={()=>handleDeleteRow(idx)}>
                           <TrashIcon className="h-5 w-5" />
                         </IconButton>
                       </Tooltip>
