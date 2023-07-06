@@ -26,12 +26,16 @@ function App() {
   ]);
 
    const handleDeleteRow =(targetRow)=>{
-    setTableRows(tableRows.filter((_,idx)=>idx!== targetRow))
-   ;
+    setTableRows(tableRows.filter((_,idx)=>idx!== targetRow))   ;
    }
+
+   const handleSubmit=(newRow)=>{
+    setTableRows([...tableRows,newRow])
+   }
+
   return (
     <>
-      <Modal />
+      <Modal onSubmit={handleSubmit}/>
       <MyTable tableRows={tableRows} handleDeleteRow={handleDeleteRow} />
     </>
   )
