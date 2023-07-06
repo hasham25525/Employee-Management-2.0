@@ -11,22 +11,11 @@ function App() {
       date: "23/04/18",
 
     },
-    {
-      name: "Mike ",
-      job: "Manager",
-      date: "23/04/18",
 
-    },
-    {
-      name: "mem ",
-      job: "Employee",
-      date: "23/04/20",
-
-    },
   ]);
 
   const [open, setOpen] = useState(false);
-    const handleOpen = () => setOpen((cur) => !cur);
+  const handleOpen = () => setOpen((cur) => !cur);
 
   const [rowToEdit, setRowToEdit] = useState(null);
 
@@ -41,22 +30,30 @@ function App() {
   }
 
   const handleSubmit = (newRow) => {
-    setTableRows([...tableRows, newRow])
+    rowToEdit === null
+      ? setTableRows([...tableRows, newRow])
+      : setTableRows(
+        tableRows.map((currRow, idx) => {
+        if (idx === rowToEdit) return currRow;
+        
+        return newRow;
+      })
+      );
   }
 
   return (
     <>
-      <Modal onSubmit={handleSubmit} 
-      handleOpen={handleOpen}
-      open={open}
-      defaultValue={rowToEdit!== null && tableRows[rowToEdit] }
+      <Modal onSubmit={handleSubmit}
+        handleOpen={handleOpen}
+        open={open}
+        defaultValue={rowToEdit !== null && tableRows[rowToEdit]}
       />
-      <MyTable 
-      tableRows={tableRows}
-      handleDeleteRow={handleDeleteRow} 
-      handleEdit={handleEdit}  
+      <MyTable
+        tableRows={tableRows}
+        handleDeleteRow={handleDeleteRow}
+        handleEdit={handleEdit}
       />
-     
+
     </>
   )
 }

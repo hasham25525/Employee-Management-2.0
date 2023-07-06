@@ -43,7 +43,6 @@ export default function Modal({ onSubmit, handleOpen, open, defaultValue }) {
         if (!validateForm()) return
         onSubmit(formState)
         handleOpen()
-        // document.getElementById('editmodal').reset();
 
     }
 
@@ -54,7 +53,6 @@ export default function Modal({ onSubmit, handleOpen, open, defaultValue }) {
                 size="xs"
                 open={open}
                 handler={handleOpen}
-                // id="editmodal"
                 className="bg-transparent shadow-none "
             >
                 <Card className="mx-auto w-full max-w-[24rem]">
