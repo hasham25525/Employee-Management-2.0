@@ -18,6 +18,7 @@ export default function Modal({ onSubmit, handleOpen, open, defaultValue }) {
 
     const [formState, setFormState] = useState(defaultValue ||
     {
+       id: new Date().getTime().toString(),
         name: "", job: "", date: ""
     }
     );
@@ -43,17 +44,20 @@ export default function Modal({ onSubmit, handleOpen, open, defaultValue }) {
         if (!validateForm()) return
         onSubmit(formState)
         handleOpen()
+        console.log(formState);
 
     }
 
     return (
         <React.Fragment>
-            <Button onClick={handleOpen} className="flex"> <UserPlusIcon className="h-4 w-4" /> Add Employee   </Button>
+            <div className="flex justify-center py-4">
+                <Button onClick={handleOpen} className="flex "> <UserPlusIcon className="h-4 w-4 mr-" /> Add Employee   </Button>
+            </div>
             <Dialog
                 size="xs"
                 open={open}
                 handler={handleOpen}
-                className="bg-transparent shadow-none "
+                className="bg-transparent shadow-lg "
             >
                 <Card className="mx-auto w-full max-w-[24rem]">
                     <CardHeader
@@ -61,7 +65,7 @@ export default function Modal({ onSubmit, handleOpen, open, defaultValue }) {
                         color="blue"
                         className="mb-4 grid h-28 place-items-center"
                     >
-                        <Typography variant="h3" color="white" >
+                        <Typography className='font-bold text-3xl heading' color="white" >
                             Add Employee
                         </Typography>
                     </CardHeader>

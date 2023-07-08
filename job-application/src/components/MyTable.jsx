@@ -4,14 +4,14 @@ import { PencilIcon,TrashIcon } from "@heroicons/react/24/solid";
 
 
 
-const TABLE_HEAD = ["Name", "Job", "Employed", ""];
+const TABLE_HEAD = ["Name", "Job", "Employed",''];
 
 export default function MyTable({ tableRows, handleDeleteRow, handleEdit }) {
   return (
     <>
 
       <Card className="overflow-scroll h-full w-full ">
-        <table className="w-full min-w-max table-auto text-left">
+        <table className="w-80 min-w-max table-auto text-left">
           <thead>
             <tr>
               {TABLE_HEAD.map((head) => (
@@ -34,21 +34,21 @@ export default function MyTable({ tableRows, handleDeleteRow, handleEdit }) {
                 return (
                   <tr key={idx}>
                     <td >
-                      <Typography variant="small" color="blue-gray" className="font-normal">
+                      <Typography variant="small" color="blue-gray" className="font-normal p-4">
                         {tableRows.name}
                       </Typography>
                     </td>
                     <td >
-                      <Typography variant="small" color="blue-gray" className="font-normal">
+                      <Typography variant="small" color="blue-gray" className="font-normal p-4">
                         {tableRows.job}
                       </Typography>
                     </td>
                     <td >
-                      <Typography variant="small" color="blue-gray" className="font-normal">
+                      <Typography variant="small" color="blue-gray" className="font-normal p-4">
                         {tableRows.date}
                       </Typography>
                     </td>
-                    <td >
+                    <td className="w-12" >
 
                       <Tooltip content="Edit User">
                         <IconButton variant="text" color="blue" onClick={()=>handleEdit(idx)}>
