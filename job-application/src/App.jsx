@@ -6,6 +6,7 @@ function App() {
 
   const [tableRows, setTableRows] = useState([
     {
+      
       name: "John Michael",
       job: "Manager",
       date: "23/04/18",
@@ -19,9 +20,11 @@ function App() {
 
   const [rowToEdit, setRowToEdit] = useState(null);
 
-  const handleEdit = (idx) => {
-    setRowToEdit(idx)
+  const handleEdit = ( idx) => {
+    
+    setRowToEdit(idx);
     handleOpen();
+console.log(rowToEdit);
   }
 
 
